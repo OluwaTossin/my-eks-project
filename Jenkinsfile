@@ -7,25 +7,25 @@ pipeline {
         stage('Lint') {
             steps {
                 // Run htmlhint using npx, which comes with npm
-                sh 'npx htmlhint *.html'
+                bat 'npx htmlhint *.html'
             }
         }
         stage('Build Docker Image') {
             steps {
                 // Build the Docker image with a tag 'my-app'
-                sh 'docker build -t my-app .'
+                bat 'docker build -t my-app .'
             }
         }
         stage('Test') {
             steps {
                 // Check if index.html contains the expected text
-                sh 'grep "Hello World, my name is Oluwatosin Jegede" index.html'
+                bat 'findstr "Hello World, my name is Oluwatosin Jegede" index.html'
             }
         }
         stage('Deploy') {
             steps {
                 // Deploy using kubectl to apply the deployment configuration
-                sh 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f deployment.yaml'
             }
         }
     }
