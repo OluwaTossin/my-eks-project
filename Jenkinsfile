@@ -1,12 +1,13 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'NodeJS' // The name given to the Node.js installation in Jenkins' Global Tool Configuration
+    }
     stages {
         stage('Lint') {
             steps {
-                // Install htmlhint
-                sh 'npm install -g htmlhint'
-                // Run htmlhint on all html files
-                sh 'htmlhint *.html'
+                // Run htmlhint using npx, which comes with npm
+                sh 'npx htmlhint *.html'
             }
         }
         stage('Build Docker Image') {
