@@ -12,7 +12,7 @@ spec:
       labels:
         app: nginx
     spec:
-      serviceAccountName: jenkins-deployer
+      serviceAccountName: jenkins-deployer  # This line tells Kubernetes to use the jenkins-deployer service account for the pods
       containers:
       - name: nginx
         image: tjesctacy/my-app:latest  # Replace with your Docker Hub username and image name
