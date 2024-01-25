@@ -12,9 +12,10 @@ spec:
       labels:
         app: nginx
     spec:
+      serviceAccountName: jenkins-deployer
       containers:
       - name: nginx
-        image: myusername/my-app:latest  # Replace with your Docker Hub username and image name
+        image: tjesctacy/my-app:latest  # Replace with your Docker Hub username and image name
         ports:
         - containerPort: 80
 ---
