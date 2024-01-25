@@ -3,24 +3,27 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                // Add linting commands for your project
-                sh '...'
+                // Install htmlhint
+                sh 'npm install -g htmlhint'
+                // Run htmlhint on all html files
+                sh 'htmlhint *.html'
             }
         }
         stage('Build Docker Image') {
             steps {
+                // Build the Docker image with a tag 'my-app'
                 sh 'docker build -t my-app .'
             }
         }
         stage('Test') {
             steps {
-                // Add testing commands for your project
-                sh '...'
+                // Check if index.html contains the expected text
+                sh 'grep "Hello World, my name is Oluwatosin Jegede" index.html'
             }
         }
         stage('Deploy') {
             steps {
-                // Add deployment commands
+                // Deploy using kubectl to apply the deployment configuration
                 sh 'kubectl apply -f deployment.yaml'
             }
         }
